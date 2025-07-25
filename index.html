@@ -26,7 +26,7 @@
         
         // 2. Send event function
         function sendEvent(eventName, params = {}) {
-          fetch('https://gw.designsgravitas.com/collect', {
+          fetch('https://gw.designsgravitas.com/', {
             method: 'POST',
             body: JSON.stringify({
               client_id,
