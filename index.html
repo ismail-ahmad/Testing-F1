@@ -11,5 +11,64 @@
         <input type="email" name="Email" id="email" />
         <input type="submit" id="submit" value="Subscribe for free"/>
     </form>
+    <script>
+        // 1. Generate and store client_id
+        function generateClientId() {
+          const storedId = localStorage.getItem('client_id');
+          if (storedId) return storedId;
+        
+          const newId = crypto.randomUUID();
+          localStorage.setItem('client_id', newId);
+          return newId;
+        }
+        
+        const client_id = generateClientId();
+        
+        // 2. Send event function
+        function sendEvent(eventName, params = {}) {
+          fetch('https://gw.designsgravitas.com/collect', {
+            method: 'POST',
+            body: JSON.stringify({
+              client_id,
+              events: [
+                {
+                  name: eventName,
+                  params
+                }
+              ],
+              measurement_id: 'G-PSTD4X6XVX' 
+            }),
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          });
+        }
+        
+        // 3. Send page_view on load
+        window.addEventListener('DOMContentLoaded', () => {
+          sendEvent('page_view', {
+            page_title: document.title,
+            page_location: window.location.href
+          });
+        });
+        
+        // 4. Send custom event on button click
+        document.addEventListener('click', function (e) {
+  if (e.target.matches('#email')) {
+    const email = e.target.value.trim();
+    const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    
+    if (isValidEmail) {
+        console.log("send sign up email!");
+      sendEvent('sign_up_click', {
+        email: email,
+        button_text: e.target.innerText || 'subscribe',
+        page_location: window.location.href
+      });
+    }
+  }
+});
+
+        </script>
 </body>
 </html>
