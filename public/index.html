@@ -17,6 +17,13 @@
         <input type="email" name="Email" id="email" required />
         <input type="submit" id="submitBtn" value="Subscribe for free"/>
     </form>
+    <script>
+        document.getElementById("subscriptionForm").onsubmit = function(event) {
+          event.preventDefault(); // Stop form from actually submitting
+          console.log("Form submitted!");
+          // You can add your custom logic here (e.g., send data with fetch)
+        };
+      </script>
     <!-- <script>
         // 1. Generate and store client_id
         function generateClientId() {
