@@ -7,69 +7,72 @@
     <title>R1</title>
 </head>
 <body>
-    <form onsubmit="event.preventDefault(); console.log('Submitted')">
-        <input type="email" name="Email" id="email" />
-        <input type="submit" id="submit" value="Subscribe for free"/>
+    <form id="subscriptionForm">
+        <input type="email" name="Email" id="email" required />
+        <input type="submit" id="submitBtn" value="Subscribe for free"/>
     </form>
     <script>
         // 1. Generate and store client_id
         function generateClientId() {
-          const storedId = localStorage.getItem('client_id');
-          if (storedId) return storedId;
-        
-          const newId = crypto.randomUUID();
-          localStorage.setItem('client_id', newId);
-          return newId;
+            const storedId = localStorage.getItem('client_id');
+            if (storedId) return storedId;
+            
+            const newId = crypto.randomUUID();
+            localStorage.setItem('client_id', newId);
+            return newId;
         }
         
         const client_id = generateClientId();
         
         // 2. Send event function
         function sendEvent(eventName, params = {}) {
-          fetch('https://gw.designsgravitas.com/', {
-            method: 'POST',
-            body: JSON.stringify({
-              client_id,
-              events: [
-                {
-                  name: eventName,
-                  params
+            fetch('https://gw.designsgravitas.com/collect', {
+                method: 'POST',
+                body: JSON.stringify({
+                    client_id,
+                    events: [{
+                        name: eventName,
+                        params
+                    }],
+                    measurement_id: 'G-PSTD4X6XVX'
+                }),
+                headers: {
+                    'Content-Type': 'application/json'
                 }
-              ],
-              measurement_id: 'G-PSTD4X6XVX' 
-            }),
-            headers: {
-              'Content-Type': 'application/json'
-            }
-          });
+            }).catch(error => console.error('Error sending event:', error));
         }
         
         // 3. Send page_view on load
         window.addEventListener('DOMContentLoaded', () => {
-            console.log("Page view send!");
-          sendEvent('page_view', {
-            page_title: document.title,
-            page_location: window.location.href
-          });
+            sendEvent('page_view', {
+                page_title: document.title,
+                page_location: window.location.href
+            });
         });
         
-        // 4. Send custom event on button click
-        document.addEventListener('click', function (e) {
-  if (e.target.matches('#submit')) {
-    const email = e.target.value.trim();
-    const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-    
-    if (isValidEmail) {
-        console.log("send sign up email!");
-      sendEvent('sign_up_click', {
-        email: email,
-        button_text: e.target.innerText || 'subscribe',
-        page_location: window.location.href
-      });
-    }
-  }
-});
-
-        </script>
+        // 4. Handle form submission
+        document.getElementById('subscriptionForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const emailInput = document.getElementById('email');
+            const email = emailInput.value.trim();
+            
+            // Validate email format
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Please enter a valid email address');
+                return;
+            }
+            
+            // Send sign_up event
+            sendEvent('sign_up_click', {
+                email: email,
+                button_text: document.getElementById('submitBtn').value,
+                page_location: window.location.href
+            });
+            
+            // Optional: Reset form after submission
+            e.target.reset();
+        });
+    </script>
 </body>
 </html>
