@@ -55,7 +55,7 @@
         
         // 4. Send custom event on button click
         document.addEventListener('click', function (e) {
-  if (e.target.matches('#email')) {
+  if (e.target.matches('#submit')) {
     const email = e.target.value.trim();
     const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
     
