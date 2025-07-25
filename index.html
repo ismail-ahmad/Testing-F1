@@ -46,6 +46,7 @@
         
         // 3. Send page_view on load
         window.addEventListener('DOMContentLoaded', () => {
+            console.log("Page view send!");
           sendEvent('page_view', {
             page_title: document.title,
             page_location: window.location.href
