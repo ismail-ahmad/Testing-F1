@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lead Form</title>
+    <style>
+        *, *::after, *::before{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            font-size: 0.9rem;
+            padding: 8px 16px;
+        }
+        form > input {
+            border: 1px solid silver;
+            outline: none;
+            margin: 8px 0 0 0;
+            border-radius: 0;
+        }
+        form{
+            width: 300px;
+            border: 2px solid red;
+            padding: 8px 16px;
+        }
+        input[type=submit] {
+            padding: 8px 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Subscribe to our Newsletter</h1>
+    <form method="post">
+        <label for="name">Name: </label><input id="name" type="name"><br/>
+        <label for="email">Email: </label><input id="email" type="email" validate="true" ><br/>
+        <input type="submit" value="Subscribe">
+    </form>
+    <script>
+        const form = document.querySelector('form');
+        form.addEventListener('submit', async (e) => {
+          e.preventDefault();
+      
+          const formData = {
+            name: form.name.value,
+            email: form.email.value
+          };
+      
+          await fetch("https://script.google.com/macros/s/AKfycbyXQhZk8ht9hvyyC0jFH8Z0YqFPvUORv6o7WOHkKo9_khUKdtagW1RVLjO0Z11irx0UMw/exec", {
+            method: "POST",
+            body: JSON.stringify(formData),
+            headers: {
+              "Content-Type": "application/json"
+            }
+          });
+      
+          alert("Submitted!");
+          form.reset();
+        });
+      </script>
+</body>
+</html>
