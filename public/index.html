@@ -39,7 +39,24 @@
       const API_KEY = 'AIzaSyB1Bkbku3NN-lF_rRVjGV1zZVrYYGoc1FA';
 
       // Discovery doc URL for APIs used by the quickstart
-      const DISCOVERY_DOC = 'https://docs.google.com/spreadsheets/d/1wj_SaGwNQqbKsMcFy4Vtsk1oE1PlCs4FI5vcWK5tkSQ/edit?gid=0#gid=0';
+
+      const SPREADSHEET_ID = '1wj_SaGwNQqbKsMcFy4Vtsk1oE1PlCs4FI5vcWK5tkSQ';
+
+
+      const DISCOVERY_DOC = 'https://sheets.googleapis.com/$discovery/rest?version=v4';
+
+function getSheetData() {
+  gapi.client.sheets.spreadsheets.values.get({
+    spreadsheetId: SPREADSHEET_ID,
+    range: 'Sheet1!A:A', // Adjust range as needed
+  }).then(function(response) {
+    const values = response.result.values;
+    console.log('Sheet data:', values);
+  }, function(error) {
+    console.error('Error reading sheet:', error);
+  });
+}
+
 
       // Authorization scopes required by the API; multiple scopes can be
       // included, separated by spaces.
