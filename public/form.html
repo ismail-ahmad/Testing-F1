@@ -45,6 +45,7 @@
     <script>
         document.querySelector('form').addEventListener('submit', async function (e) {
   e.preventDefault();
+  console.log("Form submitted");
   const form = document.querySelector('form');
   const formData = {
     name: form.name.value,
