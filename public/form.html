@@ -229,8 +229,8 @@
   console.log("Form submitted");
   const form = document.querySelector('form');
   const formData = {
-    name: form.name.value,
-    email: form.email.value
+    name: form.name.value.trim(),
+    email: form.email.value.trim()
   };
 
   try {
