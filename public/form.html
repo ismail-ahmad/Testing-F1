@@ -43,22 +43,26 @@
         <input type="submit" value="Subscribe">
     </form>
     <script>
-        document.querySelector('form').addEventListener('submit', async function (e) {
+        const form = document.querySelector('form');
+form.addEventListener('submit', async (e) => {
   e.preventDefault();
-  const formData = new FormData(this);
 
-  try {
-    const res = await fetch('https://script.google.com/macros/s/AKfycbzSxEXR8iSehtRpJfimB4cQ4FsJDHBZjZEy_YYxJ63AANbMg0ZUfqspIgvdNdzRxb8hVA/exec', {
-      method: 'POST',
-      body: formData,
-      mode: 'no-cors'  // THIS IS KEY
-    });
-    alert("Submitted");
-  } catch (err) {
-    console.error("Fetch error:", err);
-  }
+  const formData = new FormData(form);
+  const data = {
+    name: formData.get('name'),
+    email: formData.get('email')
+  };
+
+  fetch('https://script.google.com/macros/s/AKfycbzSxEXR8iSehtRpJfimB4cQ4FsJDHBZjZEy_YYxJ63AANbMg0ZUfqspIgvdNdzRxb8hVA/exec', {
+  method: 'POST',
+  body: JSON.stringify(data),
+  mode: "no-cors"
+})
+.then(res => res.json())
+.then(data => console.log("Success:", data))
+.catch(err => console.error("Fetch error:", err));
+
 });
-
       </script>
 </body>
 </html>
