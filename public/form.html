@@ -2,6 +2,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google Tag Manager -->
+<script>
+    (function(w,d,s,l,i){
+        w[l]=w[l]||[];
+        w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});
+        var f=d.getElementsByTagName(s)[0],j=d.createElement(s);
+        j.async=true;
+        j.src="https://gw.designsgravitas.com/ch4dqcgkgmlr.js?"+i;
+        f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','efynur1i=aWQ9R1RNLVA2NzhHNDdS&gCgu=jE');
+    </script>
+    <!-- End Google Tag Manager -->
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -194,6 +206,9 @@
   </style>
 </head>
 <body>
+    <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://gw.designsgravitas.com/ns.html?id=GTM-P678G47R" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
   <div class="login">
     <p class="one"></p>
     <p class="two"></p>
@@ -237,76 +252,3 @@
     </script>
 </body>
 </html>
-
-
-
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lead Form</title>
-    <style>
-        *, *::after, *::before{
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body{
-            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-            font-size: 0.9rem;
-            padding: 8px 16px;
-        }
-        form > input {
-            border: 1px solid silver;
-            outline: none;
-            margin: 8px 0 0 0;
-            border-radius: 0;
-            position: absolute;
-            right: 0;
-        }
-        form{
-            width: 300px;
-            border: 2px solid red;
-            padding: 8px 16px;
-            position: relative;
-        }
-        input[type=submit] {
-            padding: 8px 16px;
-        }
-    </style>
-</head>
-<body>
-    <h1>Subscribe to our Newsletter</h1>
-    <form method="post">
-        <label for="name">Name: </label><input id="name" name="name" type="text"><br/>
-        <label for="email">Email: </label><input id="email" name="email" type="email" validate="true" ><br/>
-        <input type="submit" value="Subscribe">
-    </form>
-    <script>
-        document.querySelector('form').addEventListener('submit', async function (e) {
-  e.preventDefault();
-  console.log("Form submitted");
-  const form = document.querySelector('form');
-  const formData = {
-    name: form.name.value,
-    email: form.email.value
-  };
-
-  try {
-    const res = await fetch('/form', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(formData)
-    });
-
-    const data = await res.json();
-    alert("Submitted: " + data.status);
-  } catch (err) {
-    console.error("Fetch error:", err);
-  }
-});
-    </script>
-</body>
-</html> -->
