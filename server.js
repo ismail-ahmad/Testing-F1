@@ -34,7 +34,7 @@ app.post('/form', (req, res) => {
     },
     body: JSON.stringify(req.body)
   })
-  .then(res => res.text())
+  .then(res => res.json())
   .then(data => {
     console.log(data);
     res.json({status: 'success'});
