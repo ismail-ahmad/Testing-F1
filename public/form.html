@@ -45,6 +45,7 @@
     <script>
         document.querySelector('form').addEventListener('submit', async function (e) {
   e.preventDefault();
+  const form = e.target;
   const formData = {
     name: form.name.value,
     email: form.email.value
@@ -53,15 +54,16 @@
   try {
     const res = await fetch('/form', {
       method: 'POST',
-      headers: {'Content-Type': 'application/json'},
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(formData)
     });
-    alert("Submitted");
+
+    const data = await res.json(); // ✅ parse response
+    alert("Submitted: " + data.status);
   } catch (err) {
     console.error("Fetch error:", err);
   }
 });
-
     </script>
 </body>
 </html>
