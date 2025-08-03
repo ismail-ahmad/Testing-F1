@@ -28,6 +28,9 @@ app.get('/form', (req, res) => {
 app.get('/thank-you', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'thank-you.html'));
 });
+app.get('/googlesheetapi', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'googlesheetapi.html'));
+});
 
 app.post('/form', (req, res) => {
   fetch(process.env.Web_Script, {
