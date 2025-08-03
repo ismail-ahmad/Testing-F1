@@ -1,4 +1,246 @@
+
 <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Login in page portfolio for the clients" />
+  <title>Login</title>
+  <script async src="https://kit.fontawesome.com/75a786cedb.js" crossorigin="anonymous"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+    *{
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+    body{
+      background-image: linear-gradient(to right, rgb(192, 88, 150), rgb(43, 77, 189));
+      background-position: center;
+      background-size: 100%;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      padding-top: 20px;
+    }
+    .login{
+      margin: 90px auto;
+      position: relative;
+      z-index: 2;
+    }
+    p{
+      position: absolute;
+      z-index: -2;
+    }
+    .one, .four{
+      height: 25%;
+      width: 20%;
+      background-color: rgba(255, 255, 255, 0.108);
+      border: 3px solid rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(4px);
+      border-radius: 10px;
+    }
+    .two, .three{
+      height: 15%;
+      width: 10%;
+      background-color: rgba(255, 255, 255, 0.108);
+      border: 3px solid rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(4px);
+      border-radius: 5px;
+    }
+    .one{
+      animation: 1200ms p1 250ms 1 ease-in-out forwards;
+      opacity: 0;
+    }
+    .four{
+      animation: 1200ms p4 250ms 1 ease-in-out forwards;
+      opacity: 0;
+    }
+    .two{
+      animation: 1200ms p2 250ms 1 ease-in-out forwards;
+      opacity: 0;
+    }
+    .three{
+      animation: 1200ms p3 250ms 1 ease-in-out forwards;
+      opacity: 0;
+    }
+    @keyframes p1 {
+      0%   {left: 0; top: 0; opacity: 0;}
+      100% { left: -7%; top: -15%; opacity: 1;}
+    }
+    @keyframes p2 {
+      0%   {left: 0; bottom: 0; opacity: 0;}
+      100% {left: -5%; bottom: -5%; opacity: 1;}
+    }
+    @keyframes p3 {
+      0%   {right: 0; top: 0; opacity: 0;}
+      100% {right: -5%; top: -5%; opacity: 1;}
+    }
+    @keyframes p4 {
+      0%   {right: 0; bottom: 0; opacity: 0;}
+      100% {right: -3%; bottom: -11%; opacity: 1;}
+    }
+    /* form Styling */
+    form{
+      color: white;
+      display: flex;
+      flex-flow: column nowrap;
+      font: normal 400 1em nunito;
+      animation: 1200ms form 0s 1 ease-in forwards;
+      backdrop-filter: blur(3px);
+      border-radius: 10px;
+      padding: 10px;
+      height: 100%;
+      width: 100%;
+    }
+    @keyframes form {
+      0%   {background-color: rgba(255, 255, 255, 0.3);}
+      100% {background-color: rgba(255, 255, 255, 0.2);}
+    }
+    input{
+      background-color: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 7px;
+      outline: none;
+      color: white;
+      flex: 100%;
+      font: 1em nunito;
+    }
+    h1{
+      text-align: center;
+      margin: 20px auto 20px auto;
+      font: 300 1.8em roboto;
+    }
+    label{
+      flex: 100%;
+    }
+    input[type="submit"]{
+      color: white;
+      background-image: linear-gradient(to left, rgba(192, 88, 150, 0.5), rgba(43, 77, 189, 0.5));
+      padding: 12px;
+      margin: 30px 0 20px 0;
+      cursor: pointer;
+    }
+    input[type="text"]{
+      margin-bottom: 20px;
+    }
+    input[type="text"]:focus, input[type="password"]:focus{
+      border-radius: 2px;
+    }
+    .social{
+      display: flex;
+      flex-flow: row nowrap;
+      width: 100%;
+      color: white;
+      font: 1em calibri;
+      justify-content: space-between;
+      margin: 5px 0 50px 0;
+    }
+    .social>div{
+      padding: 8px;
+      flex-basis: 49%;
+      text-align: center;
+      background-color: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      cursor: pointer;
+      font: normal 400 1em nunito;
+    }
+    .social i{
+      margin: 0 8px 0 0;
+    }
+    .social a, .social a:visited{
+      text-decoration: none;
+      color: white;
+    }
+    @media screen and (max-width:576px){
+     .login{
+       width: 80vw;
+     }
+    }
+    @media screen and (min-width:577px) and (max-width:768px){
+      .login{
+        width: 50vw;
+      }
+    }
+    @media screen and (min-width:769px) and (max-width:992px){
+      .login{
+        width: 40vw;
+      }
+    }
+    @media screen and (min-width:993px) and (max-width:1200px){
+      .login{
+        width: 350px;
+        margin-right: auto;
+        margin-left: 50%;
+        margin-top: 100px;
+      }
+    }
+    @media screen and (min-width:1201px) and (max-width:1400px){
+      .login{
+        width: 350px;
+        margin-right: auto;
+        margin-left: 50%;
+        margin-top: 100px;
+      }
+    }
+    @media screen and (min-width:1401px){
+      .login{
+        width: 350px;
+        margin-right: auto;
+        margin-left: 60%;
+        margin-top: 100px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="login">
+    <p class="one"></p>
+    <p class="two"></p>
+    <p class="three"></p>
+    <p class="four"></p>
+    <form method="post" autocomplete="off" target="_blank">
+      <h1>Newsletter</h1>
+      <label for="name">Name</label>
+      <input type="text" name="name" id="name">
+      <label for="email">Email</label>
+      <input type="email" name="email" id="email" >
+      <input type="submit" value="Subscribe">
+    </form>
+  </div>
+  <script>
+        document.querySelector('form').addEventListener('submit', async function (e) {
+  e.preventDefault();
+  console.log("Form submitted");
+  const form = document.querySelector('form');
+  const formData = {
+    name: form.name.value,
+    email: form.email.value
+  };
+
+  try {
+    const res = await fetch('/form', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData)
+    });
+
+    const data = await res.json();
+    if (data.status === "success") {
+      alert("You are in!");
+      return;
+    }
+  } catch (err) {
+    console.error("Fetch error:", err);
+  }
+});
+    </script>
+</body>
+</html>
+
+
+
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -67,4 +309,4 @@
 });
     </script>
 </body>
-</html>
+</html> -->
