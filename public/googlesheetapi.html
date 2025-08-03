@@ -153,14 +153,28 @@
         }
         const range = response.result;
         if (!range || !range.values || range.values.length == 0) {
-          document.getElementById('content').innerText = 'No values found.';
-          return;
-        }
+  document.getElementById('content').innerText = 'No values found.';
+  return;
+}
+displayTable(range.values);
+
         // Flatten to string to display
-        const output = range.values.reduce(
-            (str, row) => `${str}${row[0]}, ${row[1]}\n`,
-            '\n');
-        document.getElementById('content').innerText = output;
+        function displayTable(data) {
+  let tableHTML = '<table border="1" style="border-collapse: collapse;">';
+
+  data.forEach(row => {
+    tableHTML += '<tr>';
+    row.forEach(cell => {
+      tableHTML += `<td style="padding: 4px;">${cell}</td>`;
+    });
+    tableHTML += '</tr>';
+  });
+
+  tableHTML += '</table>';
+
+  document.getElementById('content').innerHTML = tableHTML;
+}
+
       }
     </script>
     <script async defer src="https://apis.google.com/js/api.js" onload="gapiLoaded()"></script>
