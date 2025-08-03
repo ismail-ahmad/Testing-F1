@@ -3,7 +3,7 @@ const path = require('path');
 require('dotenv').config();
 
 const app = express();
-const port = process.env.PORT || 3000; // 👈 Use dynamic port
+const port = process.env.PORT || 3000;
 
 // Serve static files from the 'public' directory
 app.use(express.static(path.join(__dirname, 'public')));
@@ -34,7 +34,7 @@ app.post('/form', (req, res) => {
     },
     body: JSON.stringify(req.body)
   })
-  .then(res => res.json())
+  .then(res => res.text())
   .then(data => {
     console.log(data);
     res.json({status: 'success'});
