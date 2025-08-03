@@ -55,9 +55,6 @@ form.addEventListener('submit', async (e) => {
 
   fetch('https://script.google.com/macros/s/AKfycbzSxEXR8iSehtRpJfimB4cQ4FsJDHBZjZEy_YYxJ63AANbMg0ZUfqspIgvdNdzRxb8hVA/exec', {
   method: 'POST',
-  headers: {
-    'Content-Type': 'application/json'
-  },
   body: JSON.stringify(data)
 })
 .then(res => res.json())
