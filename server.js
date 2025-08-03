@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const fetch = require('node-fetch');
+require('dotenv').config();
 
 const app = express();
 const port = process.env.PORT || 3000; // 👈 Use dynamic port
@@ -27,7 +28,7 @@ app.get('/form', (req, res) => {
 });
 
 app.post('/form', (req, res) => {
-  fetch('https://script.google.com/macros/s/AKfycbwjApE_Q2Svwxn9xEAWalis_tqGrPVIVWI5ERDy4pkqIAJiUih3V_TJdy2Ax46mJmIOcQ/exec', {
+  fetch(process.env.Web_Script, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
