@@ -242,8 +242,7 @@
 
     const data = await res.json();
     if (data.status === "success") {
-      alert("You are in!");
-      return;
+      window.location.href = '/thank-you';
     }
   } catch (err) {
     console.error("Fetch error:", err);

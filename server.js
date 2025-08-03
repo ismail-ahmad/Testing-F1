@@ -25,6 +25,9 @@ app.get('/', (req, res) => {
 app.get('/form', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'form.html'));
 });
+app.get('/thank-you', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'thank-you.html'));
+});
 
 app.post('/form', (req, res) => {
   fetch(process.env.Web_Script, {
