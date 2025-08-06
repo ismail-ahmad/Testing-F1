@@ -12,7 +12,7 @@ app.use(express.json());
 app.use((req, res, next) => {
   const host = req.headers.host;
   if (host === 'designsgravitas.com') {
-    return res.redirect(301, `https://www.example.com${req.originalUrl}`);
+    return res.redirect(301, `https://www.designsgravitas.com${req.originalUrl}`);
   }
   next();
 });
