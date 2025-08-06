@@ -9,6 +9,15 @@ const port = process.env.PORT || 8080;
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 
+app.use((req, res, next) => {
+  const host = req.headers.host;
+  if (host === 'designsgravitas.com') {
+    return res.redirect(301, `https://www.example.com${req.originalUrl}`);
+  }
+  next();
+});
+
+
 // Enable CORS for your frontend domain
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', 'https://www.designsgravitas.com');
