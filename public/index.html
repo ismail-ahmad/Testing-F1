@@ -2,6 +2,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Consent Management -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = window.gtag || function(){dataLayer.push(arguments)};
+      gtag('consent', 'default', {
+        ad_storage: 'denied',
+        analytics_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+        functionality_storage: 'denied',
+        personalization_storage: 'denied',
+        security_storage: 'granted'
+      });
+    </script>
+  <!-- End of Consent Management -->
       <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s);j.async=true;j.src="https://api.designsgravitas.com/ch4dqcgkgmlr.js?"+i;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','efynur1i=aWQ9R1RNLVA2NzhHNDdS&gCgu=jE');</script>
 <!-- End Google Tag Manager -->
@@ -10,7 +25,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Login in page portfolio for the clients" />
-  <title>Login</title>
+  <title>Homepage</title>
   <script async src="https://kit.fontawesome.com/75a786cedb.js" crossorigin="anonymous"></script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
@@ -46,6 +61,12 @@
     h1{
         font: normal 100 3em nunito;
     }
+    .cookieBanner{
+      display: none;
+    }
+    .cookieBanner h4{
+      font-weight: 100;
+    }
   </style>
 </head>
 <body>
@@ -56,5 +77,53 @@
             <h1>Design Gravitas</h1>
         <p>Coming Soon!</p>
         </main>
+        <div class="cookieBanner">
+          <span><h4>Your Cookies, Your Choise: </h4></span>
+          <button class="cookieBtn rejectAll">Reject All</button>
+          <button class="cookieBtn acceptAll">Accept All</button>
+        </div>
+        <script>
+          document.addEventListener('DOMContentLoaded', () => {
+            let Accept = document.querySelectorAll('.cookieBtn');
+          Accept.forEach((el) => {
+            el.addEventListener('click', (e) => {
+              e.preventDefault();
+              if(e.target.classList.contains('rejectAll')){
+                let consent = {
+                 ad_storage: 'denied',
+                 analytics_storage: 'denied',
+                 ad_user_data: 'denied',
+                 ad_personalization: 'denied',
+                 functionality_storage: 'denied',
+                 personalization_storage: 'denied',
+                 security_storage: 'granted'
+                 };
+                gtag('consent', 'update', consent);
+                 localStorage.setItem('consent', JSON.stringify(consent));
+              } else if(e.target.classList.contains('acceptAll')) {
+                let consent = {
+                 ad_storage: 'granted',
+                 analytics_storage: 'granted',
+                 ad_user_data: 'granted',
+                 ad_personalization: 'granted',
+                 functionality_storage: 'granted',
+                 personalization_storage: 'granted',
+                 security_storage: 'granted'
+                 };
+                gtag('consent', 'update', consent);
+                localStorage.setItem('consent', JSON.stringify(consent));
+              }
+              document.querySelector('.cookieBanner').style.display = 'none';
+            })
+          })
+          })
+
+          if(localStorage.getItem('consent') === null || localStorage.getItem('consent') === undefined){
+        document.querySelector('.cookieBanner').style.display = 'block';
+      } else {
+        let consent = localStorage.getItem('consent');
+        gtag('consent', 'update', JSON.parse(consent));
+      }
+        </script>
 </body>
 </html>
