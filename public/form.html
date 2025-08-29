@@ -118,12 +118,18 @@
     label{
       flex: 100%;
     }
-    input[type="submit"]{
+    #submitButton{
       color: white;
       background-image: linear-gradient(to left, rgba(192, 88, 150, 0.5), rgba(43, 77, 189, 0.5));
+      background-color: transparent;
       padding: 12px;
       margin: 30px 0 20px 0;
       cursor: pointer;
+      font-family: inherit;
+      font-size: inherit;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      height: 45.5px;
+      position: relative;
     }
     input[type="text"]{
       margin-bottom: 20px;
@@ -155,6 +161,13 @@
     .social a, .social a:visited{
       text-decoration: none;
       color: white;
+    }
+    .spinner{
+      animation: spin 1s linear infinite;
+      transform-origin: 50% 50%;
+    }
+    @keyframes spin {
+      100% { transform: rotate(360deg); }
     }
     @media screen and (max-width:576px){
      .login{
@@ -212,7 +225,23 @@
       <input type="text" name="name" id="name">
       <label for="email">Email</label>
       <input type="email" name="email" id="email" validate="true" required>
-      <input type="submit" value="Subscribe" id="submitButton">
+      <button type="submit" id="submitButton">
+        <span class="btn-text">Subscribe</span>
+  <svg class="spinner" width="45.5" height="45.5" viewBox="0 0 50 50" style="display:none;">
+  <circle 
+    class="path" 
+    cx="25" 
+    cy="25" 
+    r="15" 
+    fill="none" 
+    stroke="white" 
+    stroke-width="3"
+    stroke-dasharray="70 220" 
+    stroke-dashoffset="0">
+  </circle>
+</svg>
+
+      </button>
     </form>
   </div>
   <script>
@@ -220,7 +249,9 @@
   e.preventDefault();
   console.log("Form submitted");
   const form = document.querySelector('form');
-  document.querySelector('#submitButton').value = "Submitting";
+  document.querySelector('.btn-text').style.display = "none";
+  document.querySelector('.spinner').style.display = "inline";
+  document.querySelector('#submitButton').style.padding = '0';
   const formData = {
     name: form.name.value.trim(),
     email: form.email.value.trim()
@@ -236,6 +267,9 @@
     const data = await res.json();
     console.log(data);
     if (data.status === "success") {
+      document.querySelector('.btn-text').style.display = "inline";
+      document.querySelector('.spinner').style.display = "none";
+      document.querySelector('#submitButton').style.padding = '12px';
       window.location.href = '/thank-you';
     }
   } catch (err) {
