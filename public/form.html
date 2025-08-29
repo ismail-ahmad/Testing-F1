@@ -220,6 +220,7 @@
   e.preventDefault();
   console.log("Form submitted");
   const form = document.querySelector('form');
+  document.querySelector('#submitButton').value = "Submitting";
   const formData = {
     name: form.name.value.trim(),
     email: form.email.value.trim()
